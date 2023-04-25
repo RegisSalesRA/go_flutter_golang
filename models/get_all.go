@@ -1,17 +1,21 @@
 package models
 
-import ("server/db")
+import (
+	"log"
+	"server/db"
+)
 
-func GetAll() (todos []Todo,err error){
-	
+func GetAll() (todos []Todo, err error) {
+
 	conn, err := db.OpenConnection()
 	if err != nil {
+		log.Printf("teste aqui")
 		return
 	}
 	defer conn.Close()
 
 	rows, err := conn.Query(`SELECT * FROM todos`)
-	if err != nil{
+	if err != nil {
 		return
 	}
 

@@ -11,7 +11,7 @@ func List(w http.ResponseWriter, r *http.Request) {
 	todos, err := models.GetAll()
 
 	if err != nil {
-		log.Printf("Erro ao objeter registros: %v", err)
+		log.Printf("Erro ao obter registros do banco: %v", err)
 	}
 
 	w.Header().Add("Content-Type", "application/json")

@@ -4,6 +4,6 @@ port = "9000"
 
 [database]
 host = "localhost"
-user = ""
-port = ""
-name = "api_todo"
+user = "postgres"
+port = "postgres"
+name = "postgres"
