@@ -18,6 +18,7 @@ func main() {
 	r := chi.NewRouter()
 	r.Post("/", repository.Create)
 	r.Put("/{id}", repository.Update)
+	r.Put("/done/{id}", repository.UpdateDataDone)
 	r.Delete("/", repository.Delete)
 	r.Get("/", repository.List)
 	r.Get("/{id}", repository.Get)
