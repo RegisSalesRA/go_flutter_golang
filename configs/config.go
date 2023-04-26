@@ -64,7 +64,7 @@ func Load() error {
 		Port:     os.Getenv("DATABASEPORT"),
 		User:     os.Getenv("DBUSER"),
 		Pass:     os.Getenv("PASS"),
-		Database: os.Getenv("NAME"),
+		Database: os.Getenv("DBNAME"),
 	}
 	return nil
 }
