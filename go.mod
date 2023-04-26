@@ -5,6 +5,7 @@ go 1.19
 require (
 	github.com/lib/pq v1.10.8
 	github.com/spf13/viper v1.15.0
+	github.com/joho/godotenv v1.5.1
 )
 
 require (
