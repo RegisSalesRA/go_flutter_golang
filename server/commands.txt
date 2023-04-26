@@ -1,0 +1,17 @@
+# Starta o file
+go run main.go
+
+# Init module com o golang
+go mod init "nome do modulo"
+
+# Instalando os pacotes especificos
+go get -u github.com/gorilla/mux
+go install github.com/pilu/fresh
+go mod tidy
+go install golang.org/dl/go19.1@latest
+
+# GO build
+Pega task o nosso arquivo e o torna executavel para deploy
+
+# GOOS=windows go build
+Pega builda no windows
