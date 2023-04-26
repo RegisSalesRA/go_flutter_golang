@@ -10,7 +10,7 @@ go mod tidy
 
 
 # GO build
-Pega todo o nosso arquivo e o torna executavel para deploy
+Pega task o nosso arquivo e o torna executavel para deploy
 
 # GOOS=windows go build
 Pega builda no windows

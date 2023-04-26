@@ -19,16 +19,16 @@ func Update(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	var todo models.Todo
+	var task models.Task
 
-	err = json.NewDecoder(r.Body).Decode(&todo)
+	err = json.NewDecoder(r.Body).Decode(&task)
 	if err != nil {
 		log.Printf("Erro ao fazer decode do json")
 		http.Error(w, http.StatusText(http.StatusInternalServerError), http.StatusInternalServerError)
 		return
 	}
 
-	rows, err := data.Update(int64(id), todo)
+	rows, err := data.Update(int64(id), task)
 	if err != nil {
 		log.Printf("Erro ao fazer decode do json: %v", err)
 		http.Error(w, http.StatusText(http.StatusInternalServerError), http.StatusInternalServerError)

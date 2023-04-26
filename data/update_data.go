@@ -5,7 +5,7 @@ import (
 	"server/models"
 )
 
-func Update(id int64, todo models.Todo) (int64,error){
+func Update(id int64, task models.Task) (int64,error){
 	
 	conn, err := db.OpenConnection()
 	if err != nil {
@@ -13,7 +13,7 @@ func Update(id int64, todo models.Todo) (int64,error){
 	}
 	defer conn.Close()
 
-	res , err := conn.Exec(`UPDATE todos SET title=$1, description=$2, done=$3 WHERE id=$4`, todo.Title, todo.Description, todo.Done, todo.ID)
+	res , err := conn.Exec(`UPDATE tasks SET title=$1, description=$2, done=$3 WHERE id=$4`, task.Title, task.Description, task.Done, task.ID)
 	if err != nil{
 		return 0 , err
 	}

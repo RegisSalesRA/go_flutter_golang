@@ -4,7 +4,7 @@ import ("server/db"
 		"server/models"
 )
 
-func Get(id int64) (todo models.Todo,err error){
+func Get(id int64) (task models.Task,err error){
 	
 	conn, err := db.OpenConnection()
 	if err != nil {
@@ -12,9 +12,9 @@ func Get(id int64) (todo models.Todo,err error){
 	}
 	defer conn.Close()
 
-	row := conn.QueryRow(`SELECT * FROM todos WHERE id=$1`, id)
+	row := conn.QueryRow(`SELECT * FROM tasks WHERE id=$1`, id)
 	
-	err = row.Scan(&todo.ID, &todo.Title, &todo.Description, &todo.Done)
+	err = row.Scan(&task.ID, &task.Title, &task.Description, &task.Done)
 
 	return
 }

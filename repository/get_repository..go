@@ -18,12 +18,12 @@ func Get(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	todo, err := data.Get(int64(id))
+	task, err := data.Get(int64(id))
 	if err != nil {
 		log.Printf("Erro ao fazer decode do json: %v", err)
 		http.Error(w, http.StatusText(http.StatusInternalServerError), http.StatusInternalServerError)
 		return
 	}
 	w.Header().Add("Content-Type", "application/json")
-	json.NewEncoder(w).Encode(todo)
+	json.NewEncoder(w).Encode(task)
 }

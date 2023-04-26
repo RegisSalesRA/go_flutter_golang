@@ -5,7 +5,7 @@ import (
 	"server/models"
 )
 
-func GetAll() (todos []models.Todo, err error) {
+func GetAll() (tasks []models.Task, err error) {
 
 	conn, err := db.OpenConnection()
 	if err != nil {
@@ -13,18 +13,18 @@ func GetAll() (todos []models.Todo, err error) {
 	}
 	defer conn.Close()
 
-	rows, err := conn.Query(`SELECT * FROM todos`)
+	rows, err := conn.Query(`SELECT * FROM tasks`)
 	if err != nil {
 		return
 	}
 
 	for rows.Next() {
-		var todo models.Todo
-		err = rows.Scan(&todo.ID, &todo.Title, &todo.Description, &todo.Done)
+		var task models.Task
+		err = rows.Scan(&task.ID, &task.Title, &task.Description, &task.Done)
 		if err != nil {
 			continue
 		}
-		todos = append(todos, todo)
+		tasks = append(tasks, task)
 	}
 
 	return
