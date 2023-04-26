@@ -9,7 +9,6 @@ import (
 	_ "github.com/lib/pq"
 )
 
-// 17:40
 
 func OpenConnection() (*sql.DB, error) {
 	conf := configs.GetDB()
@@ -18,7 +17,7 @@ func OpenConnection() (*sql.DB, error) {
 
 	conn, err := sql.Open("postgres", sc)
 	if err != nil {
-		log.Printf("Erro ao objeter registros do banco: %v", err)
+		log.Printf("Erro ao criar banco: %v", err)
 		panic(err)
 	}
 

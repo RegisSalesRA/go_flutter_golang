@@ -1,6 +1,12 @@
 package configs
 
-import "github.com/spf13/viper"
+import (
+	"log"
+	"os"
+
+	"github.com/joho/godotenv"
+	"github.com/spf13/viper"
+)
 
 // Fazendo um ponteiro ninguem fora desse package pode acessar o config
 var cfg *config
@@ -42,18 +48,23 @@ func Load() error {
 		}
 	}
 
+	enviromentEnv := godotenv.Load(".env")
+	if enviromentEnv != nil {
+		log.Fatalf("Erro ao carregar arquivo .env: %v", enviromentEnv)
+	}
+
 	cfg = new(config)
 
 	cfg.API = APIConfig{
-		Port: viper.GetString("api.port"),
+		Port: os.Getenv("PORT"),
 	}
 
 	cfg.DB = DBConfig{
-		Host:     viper.GetString("database.host"),
-		Port:     viper.GetString("database.port"),
-		User:     viper.GetString("database.user"),
-		Pass:     viper.GetString("database.pass"),
-		Database: viper.GetString("database.name"),
+		Host:     os.Getenv("HOST"),
+		Port:     os.Getenv("DATABASEPORT"),
+		User:     os.Getenv("DBUSER"),
+		Pass:     os.Getenv("PASS"),
+		Database: os.Getenv("NAME"),
 	}
 	return nil
 }
