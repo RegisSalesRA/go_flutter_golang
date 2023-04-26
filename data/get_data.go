@@ -1,8 +1,10 @@
-package models
+package data
 
-import ("server/db")
+import ("server/db"
+		"server/models"
+)
 
-func Get(id int64) (todo Todo,err error){
+func Get(id int64) (todo models.Todo,err error){
 	
 	conn, err := db.OpenConnection()
 	if err != nil {

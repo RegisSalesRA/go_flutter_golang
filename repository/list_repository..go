@@ -1,14 +1,14 @@
-package handlers
+package repository
 
 import (
 	"encoding/json"
 	"log"
 	"net/http"
-	"server/models"
+	"server/data"
 )
 
 func List(w http.ResponseWriter, r *http.Request) {
-	todos, err := models.GetAll()
+	todos, err := data.GetAll()
 
 	if err != nil {
 		log.Printf("Erro ao obter registros do banco: %v", err)

@@ -1,10 +1,11 @@
-package handlers
+package repository
 
 import (
 	"encoding/json"
 	"fmt"
 	"log"
 	"net/http"
+	"server/data"
 	"server/models"
 )
 
@@ -18,7 +19,7 @@ func Create(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	id, err := models.Insert(todo)
+	id, err := data.Insert(todo)
 
 	var resp map[string]any
 

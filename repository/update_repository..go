@@ -1,9 +1,10 @@
-package handlers
+package repository
 
 import (
 	"encoding/json"
 	"log"
 	"net/http"
+	"server/data"
 	"server/models"
 	"strconv"
 	"github.com/go-chi/chi/v5"
@@ -27,7 +28,7 @@ func Update(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	rows, err := models.Update(int64(id), todo)
+	rows, err := data.Update(int64(id), todo)
 	if err != nil {
 		log.Printf("Erro ao fazer decode do json: %v", err)
 		http.Error(w, http.StatusText(http.StatusInternalServerError), http.StatusInternalServerError)

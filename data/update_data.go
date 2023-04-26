@@ -1,8 +1,11 @@
-package models
+package data
 
-import ("server/db")
+import (
+	"server/db"
+	"server/models"
+)
 
-func Update(id int64, todo Todo) (int64,error){
+func Update(id int64, todo models.Todo) (int64,error){
 	
 	conn, err := db.OpenConnection()
 	if err != nil {

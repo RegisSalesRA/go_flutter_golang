@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"net/http"
 	"server/configs"
-	"server/handlers"
+	"server/repository"
 
 	"github.com/go-chi/chi/v5"
 )
@@ -16,11 +16,11 @@ func main() {
 	}
 
 	r := chi.NewRouter()
-	r.Post("/", handlers.Create)
-	r.Put("/{id}", handlers.Update)
-	r.Delete("/", handlers.Delete)
-	r.Get("/", handlers.List)
-	r.Get("/{id}", handlers.Get)
+	r.Post("/", repository.Create)
+	r.Put("/{id}", repository.Update)
+	r.Delete("/", repository.Delete)
+	r.Get("/", repository.List)
+	r.Get("/{id}", repository.Get)
 
 	http.ListenAndServe(fmt.Sprintf(":%s", configs.GetServerPort()), r)
 

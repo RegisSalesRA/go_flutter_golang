@@ -1,15 +1,14 @@
-package models
+package data
 
 import (
-	"log"
 	"server/db"
+	"server/models"
 )
 
-func GetAll() (todos []Todo, err error) {
+func GetAll() (todos []models.Todo, err error) {
 
 	conn, err := db.OpenConnection()
 	if err != nil {
-		log.Printf("teste aqui")
 		return
 	}
 	defer conn.Close()
@@ -20,7 +19,7 @@ func GetAll() (todos []Todo, err error) {
 	}
 
 	for rows.Next() {
-		var todo Todo
+		var todo models.Todo
 		err = rows.Scan(&todo.ID, &todo.Title, &todo.Description, &todo.Done)
 		if err != nil {
 			continue
