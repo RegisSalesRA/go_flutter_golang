@@ -1,3 +1,16 @@
-go mod init server
+# Starta o file
+go run main.go
 
+# Init module com o golang
+go mod init "nome do modulo"
+
+# Instalando os pacotes especificos
+go get -u github.com/gorilla/mux
 go mod tidy
+
+
+# GO build
+Pega todo o nosso arquivo e o torna executavel para deploy
+
+# GOOS=windows go build
+Pega builda no windows
