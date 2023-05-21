@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"net/http"
 	"server/configs"
-	"server/repository"
+	"server/query"
 
 	"github.com/go-chi/chi/v5"
 )
