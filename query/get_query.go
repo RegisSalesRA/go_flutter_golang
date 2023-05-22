@@ -1,4 +1,4 @@
-package repository
+package query
 
 import (
 	"encoding/json"
@@ -13,14 +13,14 @@ func Get(w http.ResponseWriter, r *http.Request) {
 	id, err := strconv.Atoi(chi.URLParam(r, "id"))
 
 	if err != nil {
-		log.Printf("Erro ao fazer decode do json: %v", err)
+		log.Printf("Error made decode json: %v", err)
 		http.Error(w, http.StatusText(http.StatusInternalServerError), http.StatusInternalServerError)
 		return
 	}
 
 	task, err := data.Get(int64(id))
 	if err != nil {
-		log.Printf("Erro ao fazer decode do json: %v", err)
+		log.Printf("Error made decode json: %v", err)
 		http.Error(w, http.StatusText(http.StatusInternalServerError), http.StatusInternalServerError)
 		return
 	}

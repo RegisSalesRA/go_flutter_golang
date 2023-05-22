@@ -31,7 +31,7 @@ func Load() error {
 
 	enviromentEnv := godotenv.Load(".env")
 	if enviromentEnv != nil {
-		log.Fatalf("Erro ao carregar arquivo .env: %v", enviromentEnv)
+		log.Fatalf("Error fail to loading file .env: %v", enviromentEnv)
 	}
 
 	cfg = new(config)

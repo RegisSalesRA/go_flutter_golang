@@ -12,7 +12,7 @@ func Delete(id int64) (int64, error) {
 	}
 	defer conn.Close()
 
-	res, err := conn.Exec(`DELETE FROM task WHERE id=$1`, id)
+	res, err := conn.Exec(`DELETE FROM tasks WHERE id=$1`, id)
 	if err != nil {
 		return 0, err
 	}

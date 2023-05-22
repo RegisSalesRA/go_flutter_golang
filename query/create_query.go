@@ -1,4 +1,4 @@
-package repository
+package query
 
 import (
 	"encoding/json"
@@ -14,8 +14,20 @@ func Create(w http.ResponseWriter, r *http.Request) {
 
 	err := json.NewDecoder(r.Body).Decode(&task)
 	if err != nil {
-		log.Printf("Erro ao fazer decode do json")
+		log.Printf("Error made decode json")
 		http.Error(w, http.StatusText(http.StatusInternalServerError), http.StatusInternalServerError)
+		return
+	}
+
+	if task.Title == "" || task.Description == "" {
+		resp := map[string]interface{}{
+			"Error":   true,
+			"Message": "Fields can not be null or empty",
+		}
+
+		w.Header().Set("Content-Type", "application/json")
+		w.WriteHeader(http.StatusBadRequest)
+		json.NewEncoder(w).Encode(resp)
 		return
 	}
 
@@ -26,13 +38,13 @@ func Create(w http.ResponseWriter, r *http.Request) {
 	if err != nil {
 		resp = map[string]any{
 			"Error":   true,
-			"Message": fmt.Sprintf("Ocorreu um erro ao tentar inserir: %v", err),
+			"Message": fmt.Sprintf("Error to insert task to database: %v", err),
 		}
 
 	} else {
 		resp = map[string]any{
 			"Error":   false,
-			"Message": fmt.Sprintf("task inserido com sucesso! ID: %d", id),
+			"Message": fmt.Sprintf("task created with success! ID: %d", id),
 		}
 	}
 	w.Header().Add("Content-Type", "application/json")
