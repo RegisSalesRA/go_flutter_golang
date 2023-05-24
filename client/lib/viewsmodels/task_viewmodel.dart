@@ -1,6 +1,6 @@
-import 'package:client/models/task_model.dart';
 import 'package:flutter/cupertino.dart';
 
+import '../models/task_model.dart';
 import '../repository/task_repository.dart';
 
 class TaskViewModel with ChangeNotifier {
@@ -8,14 +8,24 @@ class TaskViewModel with ChangeNotifier {
 
   TaskViewModel({required this.repository});
 
-  List taskListData = [];
+  List taskList = [];
 
   Future getTask() async {
     var tasks = await repository.getTask();
-    for (var item in tasks) {
-      var newitem = TaskModel.fromJson(item);
-      taskListData.add(newitem);
-    }
+    var taskListRep = [for (var item in tasks) TaskModel.fromJson(item)];
+    taskList = [...taskListRep];
     notifyListeners();
+  }
+
+  Future createTask(data) async {
+    await repository.createTask(data);
+  }
+
+  Future deleteTask(id) async {
+    await repository.deleteTask(id);
+  }
+
+  Future updateTask(id, data) async {
+    await repository.updateTask(id, data);
   }
 }

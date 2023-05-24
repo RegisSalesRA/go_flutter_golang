@@ -27,7 +27,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   const SizedBox(
                     height: 10,
                   ),
-                  Text(taskViewModel.taskListData.length.toString()),
+                  Text(taskViewModel.taskList.length.toString()),
                   const SizedBox(
                     height: 10,
                   ),
@@ -35,7 +35,39 @@ class _HomeScreenState extends State<HomeScreen> {
                       onPressed: () async {
                         await taskViewModel.getTask();
                       },
-                      child: const Text("get task"))
+                      child: const Text("get task")),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  ElevatedButton(
+                      onPressed: () async {
+                        var data = {
+                          "title": "title update 10",
+                          "description": "description title 10"
+                        };
+                        await taskViewModel.createTask(data);
+                      },
+                      child: const Text("create task")),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  ElevatedButton(
+                      onPressed: () async {
+                        var data = {
+                          "title": "title update 77",
+                          "description": "description title 77"
+                        };
+                        await taskViewModel.updateTask(6, data);
+                      },
+                      child: const Text("Update task")),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  ElevatedButton(
+                      onPressed: () async {
+                        await taskViewModel.deleteTask(11);
+                      },
+                      child: const Text("Delete task"))
                 ],
               ));
         },
