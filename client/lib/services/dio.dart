@@ -5,4 +5,4 @@ final options = BaseOptions(
   connectTimeout: const Duration(seconds: 5),
 );
 
-  final dio = Dio(options);
+final dio = Dio(options);
