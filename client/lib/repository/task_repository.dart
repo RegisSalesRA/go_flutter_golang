@@ -9,7 +9,13 @@ class TaskRepository implements IApiTask {
   TaskRepository(this.client);
 
   @override
-  Future getTask() async {
+  Future getTask(int id) async {
+    var request = await client.get("${Endpoints.taskGet}$id");
+    return request;
+  }
+
+  @override
+  Future getTasks() async {
     var request = await client.get(Endpoints.taskGetList);
     return request;
   }
@@ -20,7 +26,7 @@ class TaskRepository implements IApiTask {
   }
 
   @override
-  Future updateTask(int id,dynamic data) async {
+  Future updateTask(int id, dynamic data) async {
     await client.update("${Endpoints.taskUpdate}$id", data);
   }
 

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../viewsmodels/task_viewmodel.dart';
+import '../viewmodels/viewmodel_task.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -33,7 +33,18 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                   ElevatedButton(
                       onPressed: () async {
-                        await taskViewModel.getTask();
+                        await taskViewModel.getTask(6);
+                      },
+                      child: const Text("get task")),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  const SizedBox(
+                    height: 10,
+                  ),
+                  ElevatedButton(
+                      onPressed: () async {
+                        await taskViewModel.getTasks();
                       },
                       child: const Text("get task")),
                   const SizedBox(

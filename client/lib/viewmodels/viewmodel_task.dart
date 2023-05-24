@@ -9,9 +9,16 @@ class TaskViewModel with ChangeNotifier {
   TaskViewModel({required this.repository});
 
   List taskList = [];
+  TaskModel? task;
 
-  Future getTask() async {
-    var tasks = await repository.getTask();
+  Future getTask(int id) async {
+    var request = await repository.getTask(id);
+    task = TaskModel.fromJson(request);
+    notifyListeners();
+  }
+
+  Future getTasks() async {
+    var tasks = await repository.getTasks();
     var taskListRep = [for (var item in tasks) TaskModel.fromJson(item)];
     taskList = [...taskListRep];
     notifyListeners();
