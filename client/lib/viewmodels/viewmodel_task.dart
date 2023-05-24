@@ -10,6 +10,8 @@ class TaskViewModel with ChangeNotifier {
 
   List taskList = [];
   TaskModel? task;
+  TextEditingController title = TextEditingController();
+  TextEditingController description = TextEditingController();
 
   Future getTask(int id) async {
     var request = await repository.getTask(id);
@@ -34,5 +36,9 @@ class TaskViewModel with ChangeNotifier {
 
   Future updateTask(id, data) async {
     await repository.updateTask(id, data);
+  }
+
+  Future updateTaskDone(id, data) async {
+    await repository.updateTaskDone(id, data);
   }
 }

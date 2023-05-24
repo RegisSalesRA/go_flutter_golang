@@ -31,6 +31,11 @@ class TaskRepository implements IApiTask {
   }
 
   @override
+  Future updateTaskDone(int id, dynamic data) async {
+    await client.update("${Endpoints.taskDoneUpdate}$id", data);
+  }
+
+  @override
   Future deleteTask(int id) async {
     await client.delete("${Endpoints.taskDelete}$id");
   }
