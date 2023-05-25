@@ -1,4 +1,4 @@
-package data_test
+package go_test
 
 import (
 	"server/data"

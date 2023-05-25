@@ -5,7 +5,7 @@ import 'package:flutter/foundation.dart';
 
 import '../app/constants/exception_http.dart';
 import '../app/constants/handler_response.dart';
-import '../interfaces/http_interface.dart';
+import 'http_interface.dart';
 import 'dio.dart';
 import '../app/constants/http_methods.dart';
 
