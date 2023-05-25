@@ -14,8 +14,6 @@ func List(w http.ResponseWriter, r *http.Request) {
 		log.Printf("Error to get tasks from database: %v", err)
 	}
 
-	
-
 	w.Header().Add("Content-Type", "application/json")
 	json.NewEncoder(w).Encode(tasks)
 
