@@ -5,7 +5,7 @@ import (
 	"server/models"
 )
 
-func GetAllDone() (tasks []models.Task, err error) {
+func GetAll() (tasks []models.Task, err error) {
 
 	conn, err := db.OpenConnection()
 	if err != nil {
@@ -13,7 +13,7 @@ func GetAllDone() (tasks []models.Task, err error) {
 	}
 	defer conn.Close()
 
-	rows, err := conn.Query(`SELECT * FROM tasks ORDER BY created_at`)
+	rows, err := conn.Query(`SELECT * FROM tasks WHERE done=true`)
 	if err != nil {
 		return
 	}

@@ -18,6 +18,7 @@ func main() {
 	r := chi.NewRouter()
 	r.Get("/tasks/", query.List)
 	r.Get("/tasks/{id}", query.Get)
+	r.Get("/tasks/done/", query.ListDone)
 
 	r.Post("/tasks/", query.Create)
 
