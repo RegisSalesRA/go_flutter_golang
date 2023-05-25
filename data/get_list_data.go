@@ -20,7 +20,7 @@ func GetAll() (tasks []models.Task, err error) {
 
 	for rows.Next() {
 		var task models.Task
-		err = rows.Scan(&task.ID, &task.Title, &task.Description, &task.Done)
+		err = rows.Scan(&task.ID, &task.Title, &task.Description, &task.Done, &task.CreatedAt)
 		if err != nil {
 			continue
 		}
