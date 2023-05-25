@@ -11,7 +11,6 @@ class ListTaskDoneWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListView.builder(
         shrinkWrap: true,
-        physics: const NeverScrollableScrollPhysics(),
         itemCount: taskViewModel.taskList.length,
         itemBuilder: ((context, index) {
           return Padding(

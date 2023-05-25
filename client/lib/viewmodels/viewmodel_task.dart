@@ -10,8 +10,15 @@ class TaskViewModel with ChangeNotifier {
 
   List taskList = [];
   TaskModel? task;
+  GlobalKey<FormState> formKey = GlobalKey<FormState>();
   TextEditingController title = TextEditingController();
   TextEditingController description = TextEditingController();
+  final ValueNotifier<bool> isChecked = ValueNotifier<bool>(false);
+
+  void cleanFields() {
+    title.clear();
+    description.clear();
+  }
 
   Future getTask(int id) async {
     var request = await repository.getTask(id);
@@ -28,17 +35,25 @@ class TaskViewModel with ChangeNotifier {
 
   Future createTask(data) async {
     await repository.createTask(data);
+    getTasks();
+    notifyListeners();
   }
 
   Future deleteTask(id) async {
     await repository.deleteTask(id);
+    getTasks();
+    notifyListeners();
   }
 
   Future updateTask(id, data) async {
     await repository.updateTask(id, data);
+    getTasks();
+    notifyListeners();
   }
 
   Future updateTaskDone(id, data) async {
     await repository.updateTaskDone(id, data);
+    getTasks();
+    notifyListeners();
   }
 }

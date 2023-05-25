@@ -1,3 +1,4 @@
+import 'package:client/screens/widgets/modal_bottomsheet_widget.dart';
 import 'package:flutter/material.dart';
 
 import '../../app/colors/colors.dart';
@@ -5,16 +6,13 @@ import '../../viewmodels/viewmodel_task.dart';
 
 class ListTaskWidget extends StatelessWidget {
   final TaskViewModel taskViewModel;
-  const ListTaskWidget({
-    Key? key,
-    required this.taskViewModel
-  }) : super(key: key);
+  const ListTaskWidget({Key? key, required this.taskViewModel})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
         shrinkWrap: true,
-        physics: const NeverScrollableScrollPhysics(),
         itemCount: taskViewModel.taskList.length,
         itemBuilder: ((context, index) {
           return Padding(
@@ -47,23 +45,59 @@ class ListTaskWidget extends StatelessWidget {
                           controlAffinity: ListTileControlAffinity.leading,
                           trailing: GestureDetector(
                               onTap: () {
-                                print("Change");
+                                var data = {
+                                  'done': !taskViewModel.taskList[index].done
+                                };
+                                taskViewModel.updateTaskDone(
+                                    taskViewModel.taskList[index].id, data);
                               },
-                              child: const Icon(Icons.radio_button_checked)),
+                              child: taskViewModel.taskList[index].done
+                                  ? const Icon(Icons.radio_button_checked)
+                                  : const Icon(Icons.radio_button_off)),
                           tilePadding: EdgeInsets.zero,
                           backgroundColor: Colors.transparent,
                           children: <Widget>[
                             ListTile(
                                 title: Text(
                                     taskViewModel.taskList[index].description)),
-                            const Padding(
-                                padding: EdgeInsets.symmetric(vertical: 10),
-                                child: Text(
-                                  "Editar",
-                                  style: TextStyle(
-                                      color: ColorsTheme.primaryColor,
-                                      fontWeight: FontWeight.bold),
-                                ))
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceAround,
+                              children: [
+                                Padding(
+                                    padding: const EdgeInsets.symmetric(
+                                        vertical: 10),
+                                    child: GestureDetector(
+                                      onTap: () {
+                                        showModalBottonSheetComponent(
+                                            context,
+                                            taskViewModel,
+                                            taskViewModel.taskList[index].id,
+                                            true);
+                                      },
+                                      child: const Text(
+                                        "Update",
+                                        style: TextStyle(
+                                            color: ColorsTheme.primaryColor,
+                                            fontWeight: FontWeight.bold),
+                                      ),
+                                    )),
+                                Padding(
+                                    padding: const EdgeInsets.symmetric(
+                                        vertical: 10),
+                                    child: GestureDetector(
+                                      onTap: () {
+                                        taskViewModel.deleteTask(
+                                            taskViewModel.taskList[index].id);
+                                      },
+                                      child: const Text(
+                                        "Delete",
+                                        style: TextStyle(
+                                            color: Colors.red,
+                                            fontWeight: FontWeight.bold),
+                                      ),
+                                    )),
+                              ],
+                            )
                           ],
                         ),
                       ),

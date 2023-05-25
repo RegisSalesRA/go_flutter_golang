@@ -1,5 +1,6 @@
 import 'package:client/screens/widgets/list_task_done_widget.dart';
 import 'package:client/screens/widgets/list_task_widget.dart';
+import 'package:client/screens/widgets/modal_bottomsheet_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -14,6 +15,7 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  late TaskViewModel viewModelTask;
   String title = "";
   int _cIndex = 0;
   final ValueNotifier<bool> isLoading = ValueNotifier<bool>(false);
@@ -24,9 +26,10 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   @override
-  void initState() {
-    Provider.of<TaskViewModel>(context, listen: false).getTasks();
-    super.initState();
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    viewModelTask = Provider.of<TaskViewModel>(context, listen: false);
+    viewModelTask.getTasks();
   }
 
   @override
@@ -92,52 +95,8 @@ class _HomeScreenState extends State<HomeScreen> {
               FloatingActionButtonLocation.miniCenterDocked,
           floatingActionButton: FloatingActionButton(
             onPressed: () {
-              showModalBottomSheet<void>(
-                context: context,
-                builder: (BuildContext context) {
-                  return Container(
-                    decoration: const BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.only(
-                            topLeft: Radius.circular(15.0),
-                            topRight: Radius.circular(15.0))),
-                    height: MediaQuery.of(context).size.height / 2,
-                    child: Form(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: <Widget>[
-                          const SizedBox(
-                            height: 10,
-                          ),
-                          Container(
-                            height: 10,
-                            width: 70,
-                            decoration: const BoxDecoration(
-                                color: ColorsTheme.primaryColor,
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(15))),
-                          ),
-                          const SizedBox(
-                            height: 10,
-                          ),
-                          TextFormField(),
-                          const SizedBox(
-                            height: 10,
-                          ),
-                          TextFormField(),
-                          const SizedBox(
-                            height: 25,
-                          ),
-                          ElevatedButton(
-                            child: const Text('Close BottomSheet'),
-                            onPressed: () => Navigator.pop(context),
-                          ),
-                        ],
-                      ),
-                    ),
-                  );
-                },
-              );
+              showModalBottonSheetComponent(
+                  context, viewModelTask, null, false);
             },
             child: const Icon(
               Icons.add,
