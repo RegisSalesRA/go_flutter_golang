@@ -16,5 +16,15 @@ func UpdateDataDone(id int64, done bool) (int64, error) {
 	if err != nil {
 		return 0, err
 	}
-	return res.RowsAffected()
+
+	rowsAffected, err := res.RowsAffected()
+	if err != nil {
+		return 0, err
+	}
+
+	if rowsAffected == 0 {
+		return 0, ErrNotFoundDelete
+	}
+
+	return rowsAffected, nil
 }

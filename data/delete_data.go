@@ -1,8 +1,11 @@
 package data
 
 import (
+	"errors"
 	"server/db"
 )
+
+var ErrNotFoundDelete = errors.New("can not find task")
 
 func Delete(id int64) (int64, error) {
 
@@ -16,5 +19,15 @@ func Delete(id int64) (int64, error) {
 	if err != nil {
 		return 0, err
 	}
-	return res.RowsAffected()
+
+	rowsAffected, err := res.RowsAffected()
+	if err != nil {
+		return 0, err
+	}
+
+	if rowsAffected == 0 {
+		return 0, ErrNotFoundDelete
+	}
+
+	return rowsAffected, nil
 }

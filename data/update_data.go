@@ -17,6 +17,15 @@ func Update(id int64, task models.Task) (int64, error) {
 	if err != nil {
 		return 0, err
 	}
-	return res.RowsAffected()
+	rowsAffected, err := res.RowsAffected()
+	if err != nil {
+		return 0, err
+	}
+
+	if rowsAffected == 0 {
+		return 0, ErrNotFoundDelete
+	}
+
+	return rowsAffected, nil
 
 }
