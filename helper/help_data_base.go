@@ -16,12 +16,12 @@ func main() {
 	}
 	defer db.Close()
 
-	_, err = db.Exec("CREATE DATABASE mydatabase")
+	_, err = db.Exec("CREATE DATABASE tasks")
 	if err != nil {
 		log.Fatal(err)
 	}
 
-	db, err = sql.Open("postgres", "postgres://user:password@localhost:5432/mydatabase?sslmode=disable")
+	db, err = sql.Open("postgres", "postgres://user:password@localhost:5432/tasks?sslmode=disable")
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -40,5 +40,5 @@ func main() {
 		log.Fatal(err)
 	}
 
-	fmt.Println("Banco de dados e tabela criados com sucesso!")
+	fmt.Println("Created database wiith success!")
 }

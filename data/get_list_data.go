@@ -5,7 +5,7 @@ import (
 	"server/models"
 )
 
-func GetAllDone() (tasks []models.Task, err error) {
+func GetAll() (tasks []models.Task, err error) {
 
 	conn, err := db.OpenConnection()
 	if err != nil {

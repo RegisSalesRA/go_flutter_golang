@@ -8,7 +8,7 @@ import (
 )
 
 func ListDone(w http.ResponseWriter, r *http.Request) {
-	tasks, err := data.GetAll()
+	tasks, err := data.GetAllDone()
 
 	if err != nil {
 		log.Printf("Error to get tasks from database: %v", err)
