@@ -11,8 +11,9 @@ class ListTaskDoneWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListView.builder(
         shrinkWrap: true,
-        itemCount: taskViewModel.taskList.length,
+        itemCount: taskViewModel.taskListDone.length,
         itemBuilder: ((context, index) {
+      
           return Padding(
               padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 5),
               child: ClipRRect(
@@ -39,19 +40,15 @@ class ListTaskDoneWidget extends StatelessWidget {
                             color: Colors.white,
                             border: Border.all(color: Colors.grey.shade400)),
                         child: ExpansionTile(
-                          title: Text(taskViewModel.taskList[index].title),
+                          title: Text(taskViewModel.taskListDone[index].title),
                           controlAffinity: ListTileControlAffinity.leading,
-                          trailing: GestureDetector(
-                              onTap: () {
-                                print("Change");
-                              },
-                              child: const Icon(Icons.radio_button_checked)),
+                          trailing: const Icon(Icons.radio_button_checked),
                           tilePadding: EdgeInsets.zero,
                           backgroundColor: Colors.transparent,
                           children: <Widget>[
                             ListTile(
-                                title: Text(
-                                    taskViewModel.taskList[index].description)),
+                                title: Text(taskViewModel
+                                    .taskListDone[index].description)),
                           ],
                         ),
                       ),

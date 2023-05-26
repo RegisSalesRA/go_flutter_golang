@@ -45,11 +45,22 @@ class ListTaskWidget extends StatelessWidget {
                           controlAffinity: ListTileControlAffinity.leading,
                           trailing: GestureDetector(
                               onTap: () {
-                                var data = {
-                                  'done': !taskViewModel.taskList[index].done
-                                };
-                                taskViewModel.updateTaskDone(
-                                    taskViewModel.taskList[index].id, data);
+                                try {
+                                  var data = {
+                                    'done': !taskViewModel.taskList[index].done
+                                  };
+                                  taskViewModel.updateTaskDone(
+                                      taskViewModel.taskList[index].id, data);
+                                } catch (e) {
+                                  showDialog(
+                                    context: context,
+                                    builder: (context) {
+                                      return AlertDialog(
+                                        content: Text(e.toString()),
+                                      );
+                                    },
+                                  );
+                                }
                               },
                               child: taskViewModel.taskList[index].done
                                   ? const Icon(Icons.radio_button_checked)

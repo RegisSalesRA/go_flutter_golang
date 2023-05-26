@@ -15,8 +15,15 @@ class TaskRepository implements IApiTask {
   }
 
   @override
+  Future getTasksDone() async {
+    var request = await client.get(Endpoints.taskGetListDone);
+    return request;
+  }
+
+  @override
   Future getTasks() async {
     var request = await client.get(Endpoints.taskGetList);
+    print(request);
     return request;
   }
 

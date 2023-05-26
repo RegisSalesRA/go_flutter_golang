@@ -28,8 +28,12 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
-    viewModelTask = Provider.of<TaskViewModel>(context, listen: false);
-    viewModelTask.getTasks();
+    try {
+      viewModelTask = Provider.of<TaskViewModel>(context, listen: false);
+      viewModelTask.initTasks();
+    } catch (e) {
+      print(e.toString());
+    }
   }
 
   @override
@@ -47,26 +51,25 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
           body: Consumer<TaskViewModel>(
             builder: (context, taskViewModel, child) {
-              return SizedBox(
-                  height: MediaQuery.of(context).size.height,
-                  width: double.infinity,
-                  child: ValueListenableBuilder(
-                    valueListenable: isLoading,
-                    builder: (context, value, child) {
-                      if (_cIndex == 0) {
-                        return ListTaskWidget(
-                          taskViewModel: taskViewModel,
-                        );
-                      }
-
-                      if (_cIndex == 1) {
-                        return ListTaskDoneWidget(
-                          taskViewModel: taskViewModel,
-                        );
-                      }
-                      return const CircularProgressIndicator();
-                    },
-                  ));
+              if (_cIndex == 0) {
+                return taskViewModel.taskList.isNotEmpty
+                    ? ListTaskWidget(
+                        taskViewModel: taskViewModel,
+                      )
+                    : const Center(
+                        child: Text("List is empty"),
+                      );
+              }
+              if (_cIndex == 1) {
+                return taskViewModel.taskListDone.isNotEmpty
+                    ? ListTaskDoneWidget(
+                        taskViewModel: taskViewModel,
+                      )
+                    : const Center(
+                        child: Text("List Done is empty"),
+                      );
+              }
+              return Container();
             },
           ),
           bottomNavigationBar: BottomNavigationBar(

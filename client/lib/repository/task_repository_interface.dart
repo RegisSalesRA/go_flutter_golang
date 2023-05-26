@@ -1,5 +1,6 @@
 abstract class IApiTask {
   Future getTasks();
+  Future getTasksDone();
   Future getTask(int id);
   Future createTask(dynamic data);
   Future deleteTask(int id);

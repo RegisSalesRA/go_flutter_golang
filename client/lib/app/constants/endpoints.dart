@@ -1,5 +1,6 @@
 abstract class Endpoints {
   static const String taskGetList = '/tasks/';
+  static const String taskGetListDone = '/tasks/done/';
   static const String taskGet = '/tasks/';
   static const String taskCreate = '/tasks/';
   static const String taskUpdate = '/tasks/';

@@ -9,6 +9,7 @@ class TaskViewModel with ChangeNotifier {
   TaskViewModel({required this.repository});
 
   List taskList = [];
+  List taskListDone = [];
   TaskModel? task;
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
   TextEditingController title = TextEditingController();
@@ -20,6 +21,11 @@ class TaskViewModel with ChangeNotifier {
     description.clear();
   }
 
+  void initTasks() {
+    getTasks();
+    getTasksDone();
+  }
+
   Future getTask(int id) async {
     var request = await repository.getTask(id);
     task = TaskModel.fromJson(request);
@@ -28,32 +34,44 @@ class TaskViewModel with ChangeNotifier {
 
   Future getTasks() async {
     var tasks = await repository.getTasks();
-    var taskListRep = [for (var item in tasks) TaskModel.fromJson(item)];
-    taskList = [...taskListRep];
+    if (tasks != null) {
+      var taskListRep = [for (var item in tasks) TaskModel.fromJson(item)];
+      taskList = [...taskListRep];
+    }
+    notifyListeners();
+  }
+
+  Future getTasksDone() async {
+    var tasks = await repository.getTasksDone();
+    taskListDone = [];
+    if (tasks != null) {
+      var taskListRep = [for (var item in tasks) TaskModel.fromJson(item)];
+      taskListDone = [...taskListRep];
+    }
     notifyListeners();
   }
 
   Future createTask(data) async {
     await repository.createTask(data);
-    getTasks();
+    initTasks();
     notifyListeners();
   }
 
   Future deleteTask(id) async {
     await repository.deleteTask(id);
-    getTasks();
+    initTasks();
     notifyListeners();
   }
 
   Future updateTask(id, data) async {
     await repository.updateTask(id, data);
-    getTasks();
+    initTasks();
     notifyListeners();
   }
 
   Future updateTaskDone(id, data) async {
     await repository.updateTaskDone(id, data);
-    getTasks();
+    initTasks();
     notifyListeners();
   }
 }
