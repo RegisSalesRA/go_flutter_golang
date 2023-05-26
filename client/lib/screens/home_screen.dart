@@ -28,12 +28,8 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
-    try {
-      viewModelTask = Provider.of<TaskViewModel>(context, listen: false);
-      viewModelTask.initTasks();
-    } catch (e) {
-      print(e.toString());
-    }
+    viewModelTask = Provider.of<TaskViewModel>(context, listen: false);
+    viewModelTask.initTasks();
   }
 
   @override

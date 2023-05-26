@@ -9,41 +9,40 @@ class TaskRepository implements IApiTask {
   TaskRepository(this.client);
 
   @override
-  Future getTask(int id) async {
+  Future getTaskRepository(int id) async {
     var request = await client.get("${Endpoints.taskGet}$id");
     return request;
   }
 
   @override
-  Future getTasksDone() async {
+  Future getTasksDoneRepository() async {
     var request = await client.get(Endpoints.taskGetListDone);
     return request;
   }
 
   @override
-  Future getTasks() async {
-    var request = await client.get(Endpoints.taskGetList);
-    print(request);
+  Future getTasksRepository() async {
+    var request = await client.get(Endpoints.taskGetList); 
     return request;
   }
 
   @override
-  Future createTask(dynamic data) async {
+  Future createTaskRepository(dynamic data) async {
     await client.post(Endpoints.taskCreate, data);
   }
 
   @override
-  Future updateTask(int id, dynamic data) async {
+  Future updateTaskRepository(int id, dynamic data) async {
     await client.update("${Endpoints.taskUpdate}$id", data);
   }
 
   @override
-  Future updateTaskDone(int id, dynamic data) async {
+  Future updateTaskDoneRepository(int id, dynamic data) async {
     await client.update("${Endpoints.taskDoneUpdate}$id", data);
   }
 
   @override
-  Future deleteTask(int id) async {
+  Future deleteTaskRepository(int id) async {
     await client.delete("${Endpoints.taskDelete}$id");
   }
 }
