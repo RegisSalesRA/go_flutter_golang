@@ -41,6 +41,11 @@ class ListTaskWidget extends StatelessWidget {
                             color: Colors.white,
                             border: Border.all(color: Colors.grey.shade400)),
                         child: ExpansionTile(
+                          onExpansionChanged: (value) {
+                            if (value == true) {
+                              value == false;
+                            }
+                          },
                           title: Text(taskViewModel.taskList[index].title),
                           controlAffinity: ListTileControlAffinity.leading,
                           trailing: GestureDetector(
