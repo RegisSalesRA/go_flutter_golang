@@ -7,6 +7,8 @@ go mod init "nome do modulo"
 # Instalando os pacotes especificos
 go get -u github.com/gorilla/mux
 go install github.com/pilu/fresh
+go get -u github.com/pilu/fresh
+
 go mod tidy
 go install golang.org/dl/go19.1@latest
 
