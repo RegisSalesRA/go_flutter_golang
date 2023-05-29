@@ -9,6 +9,7 @@ go mod init "nome do modulo"
 go get -u github.com/gorilla/mux
 
 go install github.com/pilu/fresh
+go get -u github.com/pilu/fresh
 
 go mod tidy
 
