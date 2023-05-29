@@ -17,7 +17,7 @@ class _AppConfigState extends State<AppConfig> {
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.light);
 
     return MaterialApp(
-      title: 'Flutter College',
+      title: 'Go Flutter',
       debugShowCheckedModeBanner: false,
       theme: themeDataMethod(),
       initialRoute: Routes.home,
