@@ -19,3 +19,35 @@ Pega task o nosso arquivo e o torna executavel para deploy
 
 # GOOS=windows go build
 Pega builda no windows
+
+
+
+# Docker
+
+docker exec -it <container-name> bash
+
+psql -U <dataBaseUserName> <dataBaseName>
+
+docker exec -it  <container-name> psql -U <dataBaseUserName> <dataBaseName>
+
+su - postgres
+
+psql -U seu_usuario -d tasks
+
+
+
+
+
+FROM postgres
+
+# Copiar o script de inicialização para o contêiner
+COPY init.sql /docker-entrypoint-initdb.d/
+
+# Definir variáveis de ambiente
+ENV POSTGRES_USER postgres
+ENV POSTGRES_PASSWORD postgres
+ENV POSTGRES_DB postgres
+
+# Expor a porta padrão do PostgreSQL
+EXPOSE 5432
+ 
