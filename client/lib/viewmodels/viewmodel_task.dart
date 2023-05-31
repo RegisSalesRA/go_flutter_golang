@@ -21,9 +21,9 @@ class TaskViewModel with ChangeNotifier {
     description.clear();
   }
 
-  void initTasks() {
-    getTasks();
-    getTasksDone();
+  void initTasks() async {
+    await getTasks();
+    await getTasksDone();
   }
 
   Future getTask(int id) async {
@@ -34,6 +34,7 @@ class TaskViewModel with ChangeNotifier {
 
   Future getTasks() async {
     var tasks = await repository.getTasksRepository();
+    taskList.clear();
     if (tasks != null) {
       var taskListRep = [for (var item in tasks) TaskModel.fromJson(item)];
       taskList = [...taskListRep];
