@@ -22,7 +22,7 @@ I had a idea to share this project go with flutter to get new knowledges about a
 
 <h2>Screenshots</h2>
 
-<img src="https://github.com/RegisSalesRA/Flutter_Hive/blob/master/assets/readme/splash.png" width="250"> <img src="https://github.com/RegisSalesRA/flutter_hive/blob/master/assets/readme/gif1.gif" width="250"> <img src="https://github.com/RegisSalesRA/flutter_hive/blob/master/assets/readme/gif2.gif" width="250"> 
+<img src="https://github.com/RegisSalesRA/go_flutter_golang/blob/master/client/assets/readme/screen_splash.png" width="250"> <img src="https://github.com/RegisSalesRA/go_flutter_golang/blob/master/client/assets/readme/screen1.png" width="250"> <img src="https://github.com/RegisSalesRA/flutter_hive/blob/master/assets/readme/gif2.gif" width="250"> 
 
 <p>
 </p>
