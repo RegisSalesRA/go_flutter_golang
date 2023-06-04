@@ -79,12 +79,12 @@ class _HomeScreenState extends State<HomeScreen> {
                   icon: Icon(
                     Icons.radio_button_checked,
                   ),
-                  label: 'Home'),
+                  label: 'Not done'),
               BottomNavigationBarItem(
                   icon: Icon(
                     Icons.radio_button_off,
                   ),
-                  label: 'Power')
+                  label: 'Done')
             ],
             onTap: (index) {
               _incrementTab(index);
